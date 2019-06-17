@@ -1,17 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DamagableScript : MonoBehaviour
 {
 
-    [SerializeField] private float _health;
+    [SerializeField] private int _health;
     [SerializeField] private ParticleSystem _poofImGone;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -20,10 +16,11 @@ public class DamagableScript : MonoBehaviour
     }
 
 
-    public void DoDamage(float Damage)
+    public void DoDamage(int damage)
     {
-        _health -= Damage;
-    }
+        _health -= damage;
+        Debug.Log("Hit!");
+        }
 
     private void CheckDead()
     {
@@ -34,4 +31,4 @@ public class DamagableScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-}
+    }
