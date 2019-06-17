@@ -28,7 +28,7 @@ public class DamagableScript : MonoBehaviour
         {
             ParticleSystem PoofSystem = Instantiate<ParticleSystem>(_poofImGone, transform);
             PoofSystem.transform.parent = null;
-            Destroy(this.gameObject);
+            Destroy(this.transform.root.gameObject);
         }
     }
     }
