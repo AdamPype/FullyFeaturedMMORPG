@@ -9,11 +9,10 @@ public class BasePlayerScript : MonoBehaviour {
 
 
     public float Acceleration;
-    [SerializeField] private bool _moveWithPlatforms = true;
     [SerializeField] private float _drag;
     [SerializeField] private float _maximumXZVelocity = (30 * 1000) / (60 * 60); //[m/s] 30km/h
     [SerializeField] private float _jumpHeight;
-    public float MouseSensitivity { get; set; }
+    public float MouseSensitivity;
     public bool SlipperyMode { get; set; }
     private Vector3 _mouseVel;
 
@@ -78,7 +77,6 @@ public class BasePlayerScript : MonoBehaviour {
 
     void FixedUpdate ()
         {
-        SetParent();
         ApplyGround();
         ApplyGravity();
         ApplyMovement();
@@ -91,20 +89,7 @@ public class BasePlayerScript : MonoBehaviour {
 
         DoMovement();
         }
-
-    private void SetParent()
-        {
-        if (_moveWithPlatforms && _char.isGrounded)
-            {
-            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f) && hit.collider)
-                {
-                if (hit.collider.CompareTag("Platform"))
-                    transform.parent = hit.collider.transform;
-                else
-                    transform.parent = null;
-                }
-            }
-        }
+    
 
     //private void Footsteps()
     //    {
